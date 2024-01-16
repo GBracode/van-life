@@ -13,7 +13,7 @@ export default function HostVans() {
             try {
                 const data = await getHostVans()
                 setVans(data)
-            } catch (error) {
+            } catch (err) {
                 setError(err)
             } finally {
                 setLoading(false)
@@ -45,7 +45,7 @@ export default function HostVans() {
     if (error) {
         return <h1>There was an error: {error.message}</h1>
     }
-    
+
     return (
         <section>
             <h1 className="host-vans-title">Your listed vans</h1>

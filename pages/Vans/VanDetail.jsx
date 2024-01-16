@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, useParams, useLocation } from "react-router-dom";
+import React from "react"
+import { Link, useParams, useLocation } from "react-router-dom"
 import { getVans } from "../../api"
 
 export default function VanDetail() {
@@ -8,7 +8,7 @@ export default function VanDetail() {
     const [error, setError] = React.useState(null)
     const { id } = useParams()
     const location = useLocation()
-     
+
     React.useEffect(() => {
         async function loadVans() {
             setLoading(true)
@@ -23,17 +23,17 @@ export default function VanDetail() {
         }
         loadVans()
     }, [id])
-
+    
     if (loading) {
         return <h1>Loading...</h1>
     }
-
+    
     if (error) {
         return <h1>There was an error: {error.message}</h1>
     }
-    
-    const search = location.state?.search || ""
-    const type = location.state?.type || "all"
+
+    const search = location.state?.search || "";
+    const type = location.state?.type || "all";
     
     return (
         <div className="van-detail-container">
@@ -42,11 +42,13 @@ export default function VanDetail() {
                 relative="path"
                 className="back-button"
             >&larr; <span>Back to {type} vans</span></Link>
-
+            
             {van && (
                 <div className="van-detail">
-                    <img src={van.imageUrl}  />
-                    <i className={`van-type ${van.type} selected`}>{van.type}</i>
+                    <img src={van.imageUrl} />
+                    <i className={`van-type ${van.type} selected`}>
+                        {van.type}
+                    </i>
                     <h2>{van.name}</h2>
                     <p className="van-price"><span>${van.price}</span>/day</p>
                     <p>{van.description}</p>
@@ -55,4 +57,4 @@ export default function VanDetail() {
             )}
         </div>
     )
-}                 
+}
